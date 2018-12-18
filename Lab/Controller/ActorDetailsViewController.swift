@@ -44,10 +44,9 @@ class ActorDetailsViewController: UIViewController {
     var searchMovies: [Movie]? {
         didSet {
             searchMovieDetailRequest()
-            myTableView.reloadData()
+            self.myTableView.reloadData()
         }
     }
-    var fullMovie: [Movie]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,8 +116,8 @@ class ActorDetailsViewController: UIViewController {
     }
     
     func searchMovieDetailRequest() {
-        guard let movies = searchMovies else { return }
-        for movie in movies {
+        guard var movies = searchMovies else { return }
+        for (index, movie) in movies.enumerated() {
             let searchRequest = "/movie/\(movie.id)"
             let myQueryItems = [
                 "api_key": networkHelper.apiKey
@@ -134,8 +133,7 @@ class ActorDetailsViewController: UIViewController {
                 do {
                     let decode = try JSONDecoder().decode(Movie.self, from: dataResponse)
                     DispatchQueue.main.async {
-                        self.fullMovie?.append(decode)
-                        print(decode)
+                        movies[index].buildMovie(for: decode)
                     }
                 } catch let parsinError{
                     print(parsinError.localizedDescription)
@@ -159,13 +157,14 @@ extension ActorDetailsViewController: UITableViewDataSource, UITableViewDelegate
         if let movies = searchMovies {
             cell.name.text = movies[indexPath.row].title
             cell.releaseDate.text = "Release date: \(movies[indexPath.row].releaseDate ?? "not avaialble")"
+            cell.duration.text = "\(movies[indexPath.row].duration ?? 0)"
             
             if imgBuilder.isImagePathValid(for: movies[indexPath.row].poster) {
                 imgBuilder.getImage(imgBuilder.path) { (imageData, error) -> (Void) in
                     cell.poster.image = UIImage(data: imageData!)
                 }
             } else {
-                self.profilePicture.image = UIImage(named: self.imgBuilder.noImageAvaiable)
+                cell.poster.image = UIImage(named: self.imgBuilder.noImageAvaiable)
             }
         }
         

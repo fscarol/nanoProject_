@@ -10,10 +10,11 @@ import Foundation
 
 struct Movie: Decodable {
     let id: Int
-    let title: String?
-    let duration: Int?
-    let poster: String?
-    let releaseDate: String?
+    var title: String?
+    var duration: Int?
+    var poster: String?
+    var releaseDate: String?
+    var genres: [Genre]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -21,5 +22,14 @@ struct Movie: Decodable {
         case duration = "runtime"
         case poster = "backdrop_path"
         case releaseDate = "release_date"
+        case genres
+    }
+    
+    mutating func buildMovie(for decode: Movie) {
+        self.duration = decode.duration
+        self.genres = decode.genres
+        self.poster = decode.poster
+        self.releaseDate = decode.releaseDate
+        self.title = decode.title
     }
 }
