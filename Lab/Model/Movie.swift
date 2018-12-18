@@ -20,7 +20,7 @@ struct Movie: Decodable {
         case id
         case title
         case duration = "runtime"
-        case poster = "backdrop_path"
+        case poster = "poster_path"
         case releaseDate = "release_date"
         case genres
     }
