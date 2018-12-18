@@ -26,10 +26,17 @@ class ActorDetailsViewController: UIViewController {
     var selectedActor: Actor?
     var fullActor: Actor? {
         didSet {
+
             nameLabel.text = fullActor?.name
-            birthdayLabel.text = fullActor?.birthday
-            birthplaceLabel.text = fullActor?.birthplace
-            biographyLabel.text = fullActor?.biography
+            birthdayLabel.text = "\(fullActor?.birthday ?? "Oops... birthday not found.")"
+            birthplaceLabel.text = "\(fullActor?.birthplace ?? "Couldn't find birthplace :/")"
+            
+            if fullActor?.biography != nil {
+                biographyLabel.text = fullActor?.biography
+            } else {
+                biographyLabel.text = "Who's this again?"
+            }
+            
             
             if imgBuilder.isImagePathValid(for: fullActor?.picture) {
                 imgBuilder.getImage(imgBuilder.path) { (imageData, error) -> (Void) in
@@ -43,7 +50,6 @@ class ActorDetailsViewController: UIViewController {
     
     var searchMovies: [Movie]? {
         didSet {
-            searchMovieDetailRequest()
             self.myTableView.reloadData()
         }
     }
@@ -54,7 +60,6 @@ class ActorDetailsViewController: UIViewController {
         myTableView.delegate = self
         searchActorDetailsRequest()
         searchMoviesRequest()
-        searchMovieDetailRequest()
     }
     
     func searchActorDetailsRequest() {
@@ -114,34 +119,6 @@ class ActorDetailsViewController: UIViewController {
         }
         task.resume()
     }
-    
-    func searchMovieDetailRequest() {
-        guard var movies = searchMovies else { return }
-        for (index, movie) in movies.enumerated() {
-            let searchRequest = "/movie/\(movie.id)"
-            let myQueryItems = [
-                "api_key": networkHelper.apiKey
-            ]
-            var urlComponents = URLComponents(string: networkHelper.apiURL + searchRequest)
-            urlComponents?.queryItems = networkHelper.queryItems(dictionary: myQueryItems)
-            
-            let task = URLSession.shared.dataTask(with: urlComponents!.url!) { (data, response, error) in
-                guard let dataResponse = data, error == nil else {
-                    print(error!.localizedDescription)
-                    return
-                }
-                do {
-                    let decode = try JSONDecoder().decode(Movie.self, from: dataResponse)
-                    DispatchQueue.main.async {
-                        movies[index].buildMovie(for: decode)
-                    }
-                } catch let parsinError{
-                    print(parsinError.localizedDescription)
-                }
-            }
-            task.resume()
-        }
-    }
 }
 
 extension ActorDetailsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -156,8 +133,12 @@ extension ActorDetailsViewController: UITableViewDataSource, UITableViewDelegate
         
         if let movies = searchMovies {
             cell.name.text = movies[indexPath.row].title
-            cell.releaseDate.text = "Release date: \(movies[indexPath.row].releaseDate ?? "not avaialble")"
-            cell.duration.text = "\(movies[indexPath.row].duration ?? 0)"
+            if movies[indexPath.row].releaseDate == "" {
+                 cell.releaseDate.text = "Release date: Not available"
+            } else {
+                cell.releaseDate.text = "Release date: \(movies[indexPath.row].releaseDate!)"
+            }
+            
             
             if imgBuilder.isImagePathValid(for: movies[indexPath.row].poster) {
                 imgBuilder.getImage(imgBuilder.path) { (imageData, error) -> (Void) in
