@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     var apiQuery: String = ""
     var customFont: UIFont?
     let greeting = GreetingGenerator()
+    
+    var color1 = UIColor(displayP3Red: 200/255, green: 104/255, blue: 96/255, alpha: 1)
+    var color2 = UIColor(displayP3Red: 40/255, green: 48/255, blue: 56/255, alpha: 1)
 
     let networkHelper = NetworkHelper()
   
@@ -43,6 +46,8 @@ class ViewController: UIViewController {
         myTableView.tableHeaderView = searchController.searchBar
         
         customFont = UIFont(name: "Quicksand-Regular", size: UIFont.labelFontSize)
+        
+        viewPersonalization()
         
     }
     
@@ -76,6 +81,15 @@ class ViewController: UIViewController {
             }
         }
         task.resume()
+    }
+    
+    func viewPersonalization() {
+        searchController.searchBar.barTintColor = color1
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchController.self]).defaultTextAttributes = [NSAttributedString.Key.font: self.customFont!]
+        
+        let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
+
     }
 }
 
