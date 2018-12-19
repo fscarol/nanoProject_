@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var apiQuery: String = ""
     var customFont: UIFont?
     let greeting = GreetingGenerator()
+    var searchBarContent: String?
     
     var color1 = UIColor(displayP3Red: 200/255, green: 104/255, blue: 96/255, alpha: 1)
     var color2 = UIColor(displayP3Red: 40/255, green: 48/255, blue: 56/255, alpha: 1)
@@ -35,20 +36,20 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         myTableView.delegate = self
         myTableView.dataSource = self
-        searchController.searchBar.delegate = self
         
+        searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Ex: Daniel, Emma, etc..."
+        searchController.searchBar.placeholder = greeting.getRandomGreeting()
+        
         
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         
         myTableView.tableHeaderView = searchController.searchBar
-        
         customFont = UIFont(name: "Quicksand-Regular", size: UIFont.labelFontSize)
         
         viewPersonalization()
-        
+        getIndexSearch()
     }
     
     func searchActorRequest() {
@@ -90,6 +91,20 @@ class ViewController: UIViewController {
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
 
+    }
+    
+    func getIndexSearch() {
+        searchController.isActive = true
+        searchController.searchBar.text = searchBarContent
+        searchController.searchBar.enablesReturnKeyAutomatically = true
+        findActor()
+    }
+    
+    func findActor() {
+        searchActors.removeAll()
+        myTableView.reloadData()
+        searchController.searchBar.resignFirstResponder()
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
 
@@ -142,6 +157,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        findActor()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchActors.removeAll()
         myTableView.reloadData()
         searchBar.resignFirstResponder()

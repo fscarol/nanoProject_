@@ -132,7 +132,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Button" image="search"/>
                                                 <connections>
-                                                    <segue destination="BYZ-38-t0r" kind="show" id="7qJ-w6-pHc"/>
+                                                    <action selector="didSearchButonTapped:" destination="Jrt-gK-0UF" eventType="touchUpInside" id="d4o-Vn-2f6"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -203,7 +203,7 @@
                         <outlet property="inviteLabel" destination="f84-Oy-7ag" id="buF-hL-aAi"/>
                         <outlet property="searchButton" destination="pAv-Rn-Fay" id="JBL-0A-dgy"/>
                         <outlet property="searchTextField" destination="tOO-9e-A86" id="95u-DQ-z3v"/>
-                        <segue destination="BYZ-38-t0r" kind="show" id="YBw-nF-mfU"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="searchSegue" id="dVb-De-4HX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Bg-IB-no3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -234,13 +234,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthplace" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38x-KN-wJu">
-                                        <rect key="frame" x="0.0" y="66" width="225" height="10.5"/>
+                                        <rect key="frame" x="0.0" y="66" width="225" height="11.5"/>
                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Bio" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PfB-es-Vxv">
-                                        <rect key="frame" x="0.0" y="82.5" width="225" height="51"/>
+                                        <rect key="frame" x="0.0" y="83.5" width="225" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Quicksand-Regular" family="Quicksand" pointSize="13"/>
@@ -380,7 +380,5 @@
     <resources>
         <image name="search" width="48" height="48"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="YBw-nF-mfU"/>
-    </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.78647786378860474" green="0.50686150789260864" blue="0.46273118257522583" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

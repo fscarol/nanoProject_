@@ -17,6 +17,17 @@ class IndexViewController: UIViewController {
     @IBOutlet weak var inviteLabel: UILabel!
     let greeting = GreetingGenerator()
     
+    @IBAction func didSearchButonTapped(_ sender: Any) {
+        let search = searchTextField.text
+        performSegue(withIdentifier: "searchSegue", sender: search)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? ViewController {
+            controller.searchBarContent = sender as? String
+        }
+    }
+    
     var color1 = UIColor(displayP3Red: 200/255, green: 104/255, blue: 96/255, alpha: 1)
     var color2 = UIColor(displayP3Red: 40/255, green: 48/255, blue: 56/255, alpha: 1)
     
@@ -98,8 +109,11 @@ extension IndexViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         let search = textField.text!
         
-        print(search)
-        
+        if search != "" {
+            performSegue(withIdentifier: "searchSegue", sender: search)
+        }
         return true
     }
+    
+    
 }
