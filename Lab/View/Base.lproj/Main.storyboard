@@ -254,8 +254,8 @@
                                     <constraint firstAttribute="height" constant="160" id="JhC-QJ-8mG"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RELATED MOVIE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbR-AD-hTz">
-                                <rect key="frame" x="110.5" y="251.5" width="154" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RELATED MOVIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbR-AD-hTz">
+                                <rect key="frame" x="104.5" y="251.5" width="166" height="25"/>
                                 <fontDescription key="fontDescription" name="Quicksand-Bold" family="Quicksand" pointSize="20"/>
                                 <color key="textColor" red="0.7843137255" green="0.40784313729999999" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -352,6 +352,7 @@
                         <outlet property="myTableView" destination="cYy-bN-vRH" id="jJk-1A-CX9"/>
                         <outlet property="nameLabel" destination="wo5-mT-QNx" id="D2w-tz-pcr"/>
                         <outlet property="profilePicture" destination="vl1-JM-0rw" id="yvF-PX-xmV"/>
+                        <outlet property="relatedMovies" destination="jbR-AD-hTz" id="Ha6-5g-FIK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82Y-Nb-SbN" userLabel="First Responder" sceneMemberID="firstResponder"/>
