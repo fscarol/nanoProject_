@@ -133,7 +133,7 @@ extension ActorDetailsViewController: UITableViewDataSource, UITableViewDelegate
         
         if let movies = searchMovies {
             cell.name.text = movies[indexPath.row].title
-            if movies[indexPath.row].releaseDate == "" {
+            if movies[indexPath.row].releaseDate == "" || movies[indexPath.row].releaseDate == nil {
                  cell.releaseDate.text = "Release date: Not available"
             } else {
                 cell.releaseDate.text = "Release date: \(movies[indexPath.row].releaseDate!)"
