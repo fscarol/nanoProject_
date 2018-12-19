@@ -15,11 +15,14 @@ class IndexViewController: UIViewController {
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var inviteLabel: UILabel!
+    
+    let indexViewSegue = "searchSegue"
+    
     let greeting = GreetingGenerator()
     
     @IBAction func didSearchButonTapped(_ sender: Any) {
         let search = searchTextField.text
-        performSegue(withIdentifier: "searchSegue", sender: search)
+        performSegue(withIdentifier: indexViewSegue, sender: search)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -39,8 +42,6 @@ class IndexViewController: UIViewController {
         
         searchPersonalization()
         tapOut()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,9 +110,8 @@ extension IndexViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         let search = textField.text!
         
-        if search != "" {
-            performSegue(withIdentifier: "searchSegue", sender: search)
-        }
+        performSegue(withIdentifier: indexViewSegue, sender: search)
+        
         return true
     }
     
