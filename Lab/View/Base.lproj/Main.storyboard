@@ -378,7 +378,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="search" width="64" height="64"/>
+        <image name="search" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="YBw-nF-mfU"/>

@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         searchController.searchBar.delegate = self
         
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = greeting.getRandomGreeting()
+        searchController.searchBar.placeholder = "Ex: Daniel, Emma, etc..."
         
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
@@ -114,7 +114,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.actorPicture?.image = UIImage(data: imageData!)
             }
         } else {
-            cell.actorPicture?.image = UIImage(named: imgBuilder.noImageAvaiable)
+            cell.actorPicture?.image = UIImage(named: imgBuilder.noImageAvailable)
         }
         return cell
     }

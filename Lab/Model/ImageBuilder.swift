@@ -18,7 +18,8 @@ struct ImageBuilder {
     let partialImageURL: String = "https://image.tmdb.org/t/p"
     let profileImagePathWidth: String = ProfileImageWidth.original.rawValue
     var path: String
-    var noImageAvaiable: String = "no_image_avaiable"
+    var noImageAvailable: String = "no_image_available"
+    var noMovieAvailable: String = "no_movie_available"
     
     init() {
         self.path = ""

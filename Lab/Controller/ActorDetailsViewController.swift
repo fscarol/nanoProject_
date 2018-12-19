@@ -43,7 +43,7 @@ class ActorDetailsViewController: UIViewController {
                     self.profilePicture.image = UIImage(data: imageData!)
                 }
             } else {
-                self.profilePicture.image = UIImage(named: self.imgBuilder.noImageAvaiable)
+                self.profilePicture.image = UIImage(named: self.imgBuilder.noImageAvailable)
             }
         }
     }
@@ -145,7 +145,7 @@ extension ActorDetailsViewController: UITableViewDataSource, UITableViewDelegate
                     cell.poster.image = UIImage(data: imageData!)
                 }
             } else {
-                cell.poster.image = UIImage(named: self.imgBuilder.noImageAvaiable)
+                cell.poster.image = UIImage(named: self.imgBuilder.noMovieAvailable)
             }
         }
         
