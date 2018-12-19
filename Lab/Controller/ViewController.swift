@@ -41,7 +41,6 @@ class ViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = greeting.getRandomGreeting()
         
-        
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         
@@ -90,7 +89,6 @@ class ViewController: UIViewController {
         
         let cancelButtonAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         UIBarButtonItem.appearance().setTitleTextAttributes(cancelButtonAttributes , for: .normal)
-
     }
     
     func getIndexSearch() {
@@ -158,13 +156,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         findActor()
-    }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActors.removeAll()
-        myTableView.reloadData()
-        searchBar.resignFirstResponder()
-        filterContentForSearchText(searchBar.text!)
     }
     
     func filterContentForSearchText(_ searchText: String) {

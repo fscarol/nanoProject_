@@ -110,7 +110,9 @@ extension IndexViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         let search = textField.text!
         
-        performSegue(withIdentifier: indexViewSegue, sender: search)
+        if search != "" {
+           performSegue(withIdentifier: indexViewSegue, sender: search)
+        }
         
         return true
     }

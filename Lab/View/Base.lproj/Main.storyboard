@@ -272,7 +272,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="bt0-6q-CxJ">
-                                                    <rect key="frame" x="143.5" y="15" width="206.5" height="111"/>
+                                                    <rect key="frame" x="144" y="15" width="206.5" height="111"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Movie Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwa-Nh-ISc">
                                                             <rect key="frame" x="0.0" y="0.0" width="206.5" height="28.5"/>
@@ -301,17 +301,20 @@
                                                     </subviews>
                                                 </stackView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="97O-Te-wzc">
-                                                    <rect key="frame" x="15" y="15" width="112.5" height="127"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="158.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="128" id="0P6-7G-adE"/>
+                                                        <constraint firstAttribute="height" constant="158.5" id="bp4-4Q-X2x"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="97O-Te-wzc" firstAttribute="leading" secondItem="KlF-YK-hAN" secondAttribute="leading" constant="15" id="Bmg-Qv-Shq"/>
-                                                <constraint firstItem="97O-Te-wzc" firstAttribute="height" secondItem="KlF-YK-hAN" secondAttribute="height" multiplier="0.8" id="DU7-X4-6ds"/>
                                                 <constraint firstItem="bt0-6q-CxJ" firstAttribute="height" secondItem="KlF-YK-hAN" secondAttribute="height" multiplier="0.7" id="IkD-7t-UZJ"/>
-                                                <constraint firstItem="97O-Te-wzc" firstAttribute="width" secondItem="KlF-YK-hAN" secondAttribute="width" multiplier="0.3" id="Lpp-ih-w0r"/>
                                                 <constraint firstItem="bt0-6q-CxJ" firstAttribute="width" secondItem="KlF-YK-hAN" secondAttribute="width" multiplier="0.55" id="OQl-Eg-GpG"/>
-                                                <constraint firstItem="bt0-6q-CxJ" firstAttribute="top" secondItem="97O-Te-wzc" secondAttribute="top" id="gtI-wA-8mk"/>
-                                                <constraint firstItem="97O-Te-wzc" firstAttribute="top" secondItem="KlF-YK-hAN" secondAttribute="top" constant="15" id="iMM-Bi-nwi"/>
+                                                <constraint firstAttribute="bottom" secondItem="97O-Te-wzc" secondAttribute="bottom" id="aA3-Xl-wUa"/>
+                                                <constraint firstItem="97O-Te-wzc" firstAttribute="top" secondItem="KlF-YK-hAN" secondAttribute="top" id="bqK-vQ-n3e"/>
+                                                <constraint firstItem="bt0-6q-CxJ" firstAttribute="top" secondItem="KlF-YK-hAN" secondAttribute="top" constant="15" id="gAv-9t-RYl"/>
+                                                <constraint firstItem="97O-Te-wzc" firstAttribute="leading" secondItem="KlF-YK-hAN" secondAttribute="leading" id="mG7-BZ-ctk"/>
                                                 <constraint firstItem="bt0-6q-CxJ" firstAttribute="leading" secondItem="97O-Te-wzc" secondAttribute="trailing" constant="16" id="vDx-AA-HNW"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -379,7 +382,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="search" width="48" height="48"/>
+        <image name="search" width="64" height="64"/>
     </resources>
     <color key="tintColor" red="0.78647786378860474" green="0.50686150789260864" blue="0.46273118257522583" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

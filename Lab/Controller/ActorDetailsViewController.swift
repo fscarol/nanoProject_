@@ -69,7 +69,6 @@ class ActorDetailsViewController: UIViewController {
         myTableView.delegate = self
         searchActorDetailsRequest()
         searchMoviesRequest()
-//        changeLabelAndHideTableViewShouldActorHasNoMovies()
     }
     
     func searchActorDetailsRequest() {
@@ -155,7 +154,7 @@ extension ActorDetailsViewController: UITableViewDataSource, UITableViewDelegate
                     cell.poster.image = UIImage(data: imageData!)
                 }
             } else {
-                cell.poster.image = UIImage(named: self.imgBuilder.noMovieAvailable)
+                cell.poster.image = UIImage(named: imgBuilder.noMovieAvailable)
             }
         }
         
