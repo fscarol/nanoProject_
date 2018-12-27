@@ -15,7 +15,21 @@ class IndexViewController: UIViewController {
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var inviteLabel: UILabel!
+    
+    let indexViewSegue = "searchSegue"
+    
     let greeting = GreetingGenerator()
+    
+    @IBAction func didSearchButonTapped(_ sender: Any) {
+        let search = searchTextField.text
+        performSegue(withIdentifier: indexViewSegue, sender: search)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? ViewController {
+            controller.searchBarContent = sender as? String
+        }
+    }
     
     var color1 = UIColor(displayP3Red: 200/255, green: 104/255, blue: 96/255, alpha: 1)
     var color2 = UIColor(displayP3Red: 40/255, green: 48/255, blue: 56/255, alpha: 1)
@@ -28,8 +42,6 @@ class IndexViewController: UIViewController {
         
         searchPersonalization()
         tapOut()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,8 +110,12 @@ extension IndexViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         let search = textField.text!
         
-        print(search)
+        if search != "" {
+           performSegue(withIdentifier: indexViewSegue, sender: search)
+        }
         
         return true
     }
+    
+    
 }

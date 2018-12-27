@@ -16,6 +16,7 @@ class ActorDetailsViewController: UIViewController {
     @IBOutlet weak var birthplaceLabel: UILabel!
     @IBOutlet weak var biographyLabel: UITextView!
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var relatedMovies: UILabel!
     
     let networkHelper = NetworkHelper()
 
@@ -23,10 +24,19 @@ class ActorDetailsViewController: UIViewController {
     
     var imgBuilder = ImageBuilder()
     
+    func changeLabelAndHideTableViewShouldActorHasNoMovies() {
+        if searchMovies == nil || searchMovies!.isEmpty {
+            relatedMovies.text = "Couldn't find any movies :("
+            myTableView.isHidden = true
+        } else {
+            relatedMovies.text = "related movies".uppercased()
+            myTableView.isHidden = false
+        }
+    }
+    
     var selectedActor: Actor?
     var fullActor: Actor? {
         didSet {
-
             nameLabel.text = fullActor?.name
             birthdayLabel.text = "\(fullActor?.birthday ?? "Oops... birthday not found.")"
             birthplaceLabel.text = "\(fullActor?.birthplace ?? "Couldn't find birthplace :/")"
@@ -36,7 +46,6 @@ class ActorDetailsViewController: UIViewController {
             } else {
                 biographyLabel.text = "Who's this again?"
             }
-            
             
             if imgBuilder.isImagePathValid(for: fullActor?.picture) {
                 imgBuilder.getImage(imgBuilder.path) { (imageData, error) -> (Void) in
@@ -112,6 +121,7 @@ class ActorDetailsViewController: UIViewController {
                 let decode = try JSONDecoder().decode(MovieSearchResponse.self, from: dataResponse)
                 DispatchQueue.main.async {
                     self.searchMovies = decode.cast
+                    self.changeLabelAndHideTableViewShouldActorHasNoMovies()
                 }
             } catch let parsinError{
                 print(parsinError.localizedDescription)
@@ -133,19 +143,18 @@ extension ActorDetailsViewController: UITableViewDataSource, UITableViewDelegate
         
         if let movies = searchMovies {
             cell.name.text = movies[indexPath.row].title
-            if movies[indexPath.row].releaseDate == "" {
+            if movies[indexPath.row].releaseDate == "" || movies[indexPath.row].releaseDate == nil {
                  cell.releaseDate.text = "Release date: Not available"
             } else {
                 cell.releaseDate.text = "Release date: \(movies[indexPath.row].releaseDate!)"
             }
-            
             
             if imgBuilder.isImagePathValid(for: movies[indexPath.row].poster) {
                 imgBuilder.getImage(imgBuilder.path) { (imageData, error) -> (Void) in
                     cell.poster.image = UIImage(data: imageData!)
                 }
             } else {
-                cell.poster.image = UIImage(named: self.imgBuilder.noMovieAvailable)
+                cell.poster.image = UIImage(named: imgBuilder.noMovieAvailable)
             }
         }
         
